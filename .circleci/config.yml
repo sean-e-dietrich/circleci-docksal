@@ -4,8 +4,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/buildpack-deps:18.04-curl-dind
+      - image: docker:edge-dind
     steps:
+      - apk add --no-cache git openssh-client bash
       - checkout
       - setup_remote_docker
       - run: echo 'Hello World'
