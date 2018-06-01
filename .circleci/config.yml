@@ -5,9 +5,7 @@ jobs:
   build:
     docker:
       - image: alpine
-    # Ignore all branches
-    branches:
-      ignore:
-        - /.*/
     steps:
+      - checkout
+      - setup_remote_docker
       - run: echo 'Hello World'
