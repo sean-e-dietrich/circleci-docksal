@@ -4,43 +4,47 @@ version: 2
 jobs:
   build:
     docker:
-      #- image: docker:edge-dind
-      - image: alpine:3.6
+    #  #- image: docker:edge-dind
+    #  - image: alpine:3.6
+      - image: ubuntu
+    #machine: true
     steps:
-      - run: |
-          set -x && \
-          apk add --no-cache -t .deps ca-certificates curl && \
-          # Install glibc on Alpine (required by docker-compose) from
-          # https://github.com/sgerrand/alpine-pkg-glibc
-          # See also https://github.com/gliderlabs/docker-alpine/issues/11
-          GLIBC_VERSION='2.23-r3' && \
-          curl -Lo /etc/apk/keys/sgerrand.rsa.pub https://raw.githubusercontent.com/sgerrand/alpine-pkg-glibc/master/sgerrand.rsa.pub && \
-          curl -Lo glibc.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/download/$GLIBC_VERSION/glibc-$GLIBC_VERSION.apk && \
-          curl -Lo glibc-bin.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/download/$GLIBC_VERSION/glibc-bin-$GLIBC_VERSION.apk && \
-          apk update && \
-          apk add glibc.apk glibc-bin.apk && \
-          rm -rf /var/cache/apk/* && \
-          rm glibc.apk glibc-bin.apk && \
-          \
-          # Clean-up
-          apk del .deps
-      - run: | 
-          set -x && \
-          apk add --no-cache -t .deps ca-certificates curl && \
-          # Install docker-compose
-          # https://docs.docker.com/compose/install/
-          DOCKER_COMPOSE_URL=https://github.com$(curl -L https://github.com/docker/compose/releases/latest | grep -Eo 'href="[^"]+docker-compose-Linux-x86_64' | sed 's/^href="//' | head -1) && \
-          curl -Lo /usr/local/bin/docker-compose $DOCKER_COMPOSE_URL && \
-          chmod a+rx /usr/local/bin/docker-compose && \
-          \
-          # Basic check it works
-          docker-compose version && \
-          \
-          # Clean-up
-          apk del .deps
-      #- run: apk add --no-cache git openssh-client bash curl sudo util-linux
-      - checkout
-      - setup_remote_docker
+      #- run: echo "http://dl-6.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+      #- run: apk update
+      #- run: apk add --no-cache git openssh-client bash curl sudo util-linux docker docker-compose
+      #- run: |
+      #    set -x && \
+      #    apk add --no-cache -t .deps ca-certificates curl && \
+      #    # Install glibc on Alpine (required by docker-compose) from
+      #    # https://github.com/sgerrand/alpine-pkg-glibc
+      #    # See also https://github.com/gliderlabs/docker-alpine/issues/11
+      #    GLIBC_VERSION='2.23-r3' && \
+      #    curl -Lo /etc/apk/keys/sgerrand.rsa.pub https://raw.githubusercontent.com/sgerrand/alpine-pkg-glibc/master/sgerrand.rsa.pub && \
+      #    curl -Lo glibc.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/download/$GLIBC_VERSION/glibc-$GLIBC_VERSION.apk && \
+      #    curl -Lo glibc-bin.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/download/$GLIBC_VERSION/glibc-bin-$GLIBC_VERSION.apk && \
+      #    apk update && \
+      #    apk add glibc.apk glibc-bin.apk && \
+      #    rm -rf /var/cache/apk/* && \
+      #    rm glibc.apk glibc-bin.apk && \
+      #    \
+      #    # Clean-up
+      #    apk del .deps
+      #- run: | 
+      #    set -x && \
+      #    apk add --no-cache -t .deps ca-certificates curl && \
+      #    # Install docker-compose
+      #    # https://docs.docker.com/compose/install/
+      #    DOCKER_COMPOSE_URL=https://github.com$(curl -L https://github.com/docker/compose/releases/latest | grep -Eo 'href="[^"]+docker-compose-Linux-x86_64' | sed 's/^href="//' | head -1) && \
+      #    curl -Lo /usr/local/bin/docker-compose $DOCKER_COMPOSE_URL && \
+      #    chmod a+rx /usr/local/bin/docker-compose && \
+      #    \
+      #    # Basic check it works
+      #    docker-compose version && \
+      #    \
+      #    # Clean-up
+      #    apk del .deps
+      #- checkout
+      #- setup_remote_docker
       #- run: curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
-      #- run: curl -fsSL https://get.docksal.io | DOCKSAL_BRANCH=develop bash
+      - run: curl -fsSL https://get.docksal.io | DOCKSAL_VERSION=develop sh
       #- run: echo 'Hello World'
