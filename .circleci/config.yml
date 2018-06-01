@@ -46,5 +46,8 @@ jobs:
       #- checkout
       #- setup_remote_docker
       #- run: curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
-      - run: curl -fsSL https://get.docksal.io | DOCKSAL_VERSION=develop sh
+      - run: apt update
+      - run: apt install -y curl sudo uuid-runtime
+      - run: useradd circleci && usermod -a -G docker circleci
+      - run: curl -fsSL https://get.docksal.io | sudo -u circleci DOCKSAL_VERSION=develop sh
       #- run: echo 'Hello World'
