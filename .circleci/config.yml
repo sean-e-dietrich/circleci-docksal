@@ -6,7 +6,7 @@ jobs:
     docker:
       - image: docker:edge-dind
     steps:
-      - apk add --no-cache git openssh-client bash
+      - run: apk add --no-cache git openssh-client bash
       - checkout
       - setup_remote_docker
       - run: echo 'Hello World'
