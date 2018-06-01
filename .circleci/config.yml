@@ -4,7 +4,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: alpine
+      - image: circleci/buildpack-deps:18.04-curl-dind
     steps:
       - checkout
       - setup_remote_docker
