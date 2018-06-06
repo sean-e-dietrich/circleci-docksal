@@ -3,13 +3,13 @@
 version: 2
 jobs:
   build:
-    docker:
+    #docker:
     #  #- image: docker:edge-dind
     #  - image: alpine:3.6
-      - image: ubuntu
+    #  - image: ubuntu
     #  - image: docker:18.03-dind
     #  - image: circleci/buildpack-deps:stretch-scm-dind
-    #machine: true
+    machine: true
     steps:
       #- run: echo "http://dl-6.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
       #- run: apk update
@@ -47,6 +47,7 @@ jobs:
       #    apk del .deps
       #- run: apk add --no-cache bash curl sudo py-pip util-linux git
       - checkout
+      - run: curl -fsSL https://get.docksal.io | sh
       #- setup_remote_docker
       #- run: sudo pip install --upgrade pip
       #- run: sudo pip install docker-compose
