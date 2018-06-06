@@ -6,7 +6,8 @@ jobs:
     docker:
     #  #- image: docker:edge-dind
     #  - image: alpine:3.6
-      - image: ubuntu
+    #  - image: ubuntu
+      - image: docker:18-dind
     #machine: true
     steps:
       #- run: echo "http://dl-6.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
@@ -43,11 +44,12 @@ jobs:
       #    \
       #    # Clean-up
       #    apk del .deps
-      #- checkout
-      #- setup_remote_docker
+      - run: apk add --no-cache git
+      - checkout
+      - setup_remote_docker
       #- run: curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
-      - run: apt update
-      - run: apt install -y curl sudo uuid-runtime
-      - run: useradd circleci && usermod -a -G docker circleci
-      - run: curl -fsSL https://get.docksal.io | sudo -u circleci DOCKSAL_VERSION=develop sh
+      #- run: apt update
+      #- run: apt install -y curl sudo uuid-runtime
+      #- run: useradd circleci && usermod -a -G docker circleci
+      #- run: curl -fsSL https://get.docksal.io | sudo -u circleci DOCKSAL_VERSION=develop sh
       #- run: echo 'Hello World'
