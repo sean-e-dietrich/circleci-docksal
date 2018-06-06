@@ -8,8 +8,6 @@ jobs:
     #  - image: alpine:3.6
     #  - image: ubuntu
       - image: docker:18.03-dind
-        environment:
-          - TERM: dumb
     #  - image: circleci/buildpack-deps:stretch-scm-dind
     #machine: true
     steps:
@@ -49,7 +47,7 @@ jobs:
       #    apk del .deps
       - run: apk add --no-cache bash curl sudo py-pip util-linux git
       - checkout
-      - setup_remote_docker
+      #- setup_remote_docker
       - run: sudo pip install --upgrade pip
       - run: sudo pip install docker-compose
       #- run: curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
