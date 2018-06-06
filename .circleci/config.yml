@@ -7,8 +7,10 @@ jobs:
     #  #- image: docker:edge-dind
     #  - image: alpine:3.6
     #  - image: ubuntu
-    #  - image: docker:18.03-dind
-      - image: circleci/buildpack-deps:stretch-scm-dind
+      - image: docker:18.03-dind
+        environment:
+          - TERM: dumb
+    #  - image: circleci/buildpack-deps:stretch-scm-dind
     #machine: true
     steps:
       #- run: echo "http://dl-6.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
