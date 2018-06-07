@@ -1,0 +1,5 @@
+version: '3'
+services:
+  trigger:
+    image: franela/dind
+    command: sh -c "curl -fsSL https://get.docksal.io | sh"
