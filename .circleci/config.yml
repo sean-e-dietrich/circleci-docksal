@@ -4,7 +4,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image: ubuntu:17.10
+      #- image: ubuntu:17.10
+      - image: circleci/buildpack-deps:17.10-curl
       #- image: docker:18.03-dind
       #- image: franela/dind
     #machine: true
