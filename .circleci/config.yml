@@ -4,13 +4,15 @@ version: 2
 jobs:
   build:
     docker:
+      - image: ubuntu:18.10
       #- image: docker:18.03-dind
-      - image: franela/dind
+      #- image: franela/dind
     #machine: true
     steps:
-      - run: apk add --no-cache bash curl sudo py-pip util-linux git
-      - checkout
-      - run: curl -fsSL https://get.docksal.io | sh
+      - echo 'hello'
+      #- run: apk add --no-cache bash curl sudo py-pip util-linux git
+      #- checkout
+      #- run: curl -fsSL https://get.docksal.io | sh
       #- setup_remote_docker
       #- run: sudo pip install --upgrade pip
       #- run: sudo pip install docker-compose
