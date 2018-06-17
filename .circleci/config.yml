@@ -9,7 +9,7 @@ jobs:
       #- image: franela/dind
     #machine: true
     steps:
-      - echo 'hello'
+      - run: echo 'hello'
       #- run: apk add --no-cache bash curl sudo py-pip util-linux git
       #- checkout
       #- run: curl -fsSL https://get.docksal.io | sh
