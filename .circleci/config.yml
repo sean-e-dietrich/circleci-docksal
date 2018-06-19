@@ -1,26 +1,7 @@
-# This is a temporary dummy config to stop CircleCI from building this branch with automatic v1.0 configuration for PHP
-
 version: 2
 jobs:
   build:
-    #docker:
-      #- image: ubuntu:17.10
-      #- image: circleci/buildpack-deps:17.10-curl
-      #- image: docker:18.03-dind
-      #- image: franela/dind
-      #- image: gliderlabs/dockerbox
     machine: true
     steps:
-      - run: echo 'hello'
-      #- run: apk add --no-cache bash curl sudo py-pip util-linux git openrc docker
-      #- checkout
-      #- run: curl -fsSL https://get.docksal.io | sh
-      #- setup_remote_docker
-      #- run: sudo pip install --upgrade pip
-      #- run: sudo pip install docker-compose
-      #- run: curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
-      #- run: apt update
-      #- run: apt install -y curl sudo uuid-runtime
-      #- run: useradd circleci && usermod -a -G docker circleci
-      #- run: curl -fsSL https://get.docksal.io | sudo -u circleci DOCKSAL_VERSION=develop sh
-      #- run: echo 'Hello World'
+      - run: curl -fsSL https://get.docksal.io | DOCKSAL_VERSION=develop sh
+      - checkout
