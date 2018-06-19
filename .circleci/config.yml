@@ -3,13 +3,13 @@
 version: 2
 jobs:
   build:
-    docker:
+    #docker:
       #- image: ubuntu:17.10
       #- image: circleci/buildpack-deps:17.10-curl
-      - image: docker:18.03-dind
+      #- image: docker:18.03-dind
       #- image: franela/dind
       #- image: gliderlabs/dockerbox
-    #machine: true
+    machine: true
     steps:
       - run: echo 'hello'
       #- run: apk add --no-cache bash curl sudo py-pip util-linux git openrc docker
