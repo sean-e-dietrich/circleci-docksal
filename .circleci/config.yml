@@ -4,5 +4,5 @@ jobs:
     machine: true
     steps:
       - run: curl -fsSL https://get.docksal.io | DOCKSAL_VERSION=develop sh
-      - newgrp docker
+      - run: newgrp docker
       - checkout
