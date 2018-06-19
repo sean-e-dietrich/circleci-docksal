@@ -6,9 +6,9 @@ jobs:
     docker:
       #- image: ubuntu:17.10
       #- image: circleci/buildpack-deps:17.10-curl
-      #- image: docker:18.03-dind
+      - image: docker:18.03-dind
       #- image: franela/dind
-      - image: gliderlabs/dockerbox
+      #- image: gliderlabs/dockerbox
     #machine: true
     steps:
       - run: echo 'hello'
